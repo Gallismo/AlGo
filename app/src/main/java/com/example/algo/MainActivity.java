@@ -13,16 +13,19 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private OrdersFragment ordersFragment;
+    private StatsFragment statsFragment;
+
     private NavigationBarView.OnItemSelectedListener navSelectListener
             = new NavigationBarView.OnItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.nav_item_orders:
-                    loadFragment(OrdersFragment.newInstance());
+                    loadFragment(ordersFragment);
                     return true;
                 case R.id.nav_item_stats:
-                    loadFragment(StatsFragment.newInstance());
+                    loadFragment(statsFragment);
                     return true;
             }
             return false;
@@ -31,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main_content, fragment);
+        ft.hide(ordersFragment);
+        ft.hide(statsFragment);
+        ft.show(fragment);
         ft.commit();
     }
 
@@ -41,7 +46,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.nav_bar);
         navigation.setOnItemSelectedListener(navSelectListener);
-        loadFragment(OrdersFragment.newInstance());
+        ordersFragment = OrdersFragment.newInstance();
+        statsFragment = StatsFragment.newInstance();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.main_content, ordersFragment);
+        ft.add(R.id.main_content, statsFragment);
+        ft.hide(statsFragment);
+        ft.commit();
     }
 
 }
