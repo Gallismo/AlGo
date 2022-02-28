@@ -10,6 +10,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AlGo.NoActionBar">
         <activity
+                android:name=".OrderAddActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>

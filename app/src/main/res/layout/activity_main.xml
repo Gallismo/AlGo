@@ -12,7 +12,9 @@
                      android:layout_height="0dp"
                      android:layout_weight="1"
                      android:background="@color/dark_purple"
-                     android:id="@+id/main_content"/>
+                     android:id="@+id/main_content">
+
+        </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:layout_width="match_parent"
@@ -20,5 +22,6 @@
                 android:id="@+id/nav_bar"
                 android:layout_gravity="bottom"
                 android:background="@color/darker_purple"
-                app:menu="@menu/bottom_nav"/>
+                app:menu="@menu/bottom_nav">
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 </LinearLayout>

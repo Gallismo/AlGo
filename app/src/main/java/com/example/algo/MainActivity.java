@@ -1,6 +1,7 @@
 package com.example.algo;
 
 import android.view.MenuItem;
+import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,10 +45,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.nav_bar);
         navigation.setOnItemSelectedListener(navSelectListener);
+
         ordersFragment = OrdersFragment.newInstance();
         statsFragment = StatsFragment.newInstance();
+
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.main_content, ordersFragment);
         ft.add(R.id.main_content, statsFragment);
