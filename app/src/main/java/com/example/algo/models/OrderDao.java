@@ -12,6 +12,6 @@ public interface OrderDao {
     @Query("SELECT * FROM `order`")
     List<Order> getAllOrders();
 
-    @Query("SELECT * FROM `order` WHERE date > :date_after")
-    List<Order> getOrdersAfterDate(Date date_after);
+//    @Query("SELECT * FROM `order` WHERE date > :date_after")
+//    List<Order> getOrdersAfterDate(Date date_after);
 }

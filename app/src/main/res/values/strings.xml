@@ -4,4 +4,12 @@
     <string name="title_menu_stats">Статистика</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_client_name">Заказчик</string>
+    <string name="input_city">Город</string>
+    <string name="input_products_count">Количество</string>
+    <string name="input_sum">Общая сумма</string>
+    <string name="input_paid">Оплачено</string>
+    <string name="input_date">Дата</string>
+    <string name="input_status">Статус</string>
+    <string name="input_notes">Заметки</string>
 </resources>

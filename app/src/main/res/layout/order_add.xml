@@ -1,10 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".OrderAddActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:padding="5dp"
+              android:background="@color/dark_purple"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".OrderAddActivity">
+    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content"
+                                                           app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                                                           style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                                                           app:boxBackgroundColor="@color/darker_purple"
+                                                           android:layout_marginBottom="10dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:hint="@string/input_client_name"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content"
+                                                           app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                                                           style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                                                           app:boxBackgroundColor="@color/darker_purple"
+                                                           android:layout_marginBottom="10dp">
+
+        <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:hint="@string/input_city"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content"
+                                                           app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                                                           style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                                                           app:boxBackgroundColor="@color/darker_purple"
+                                                           android:layout_marginBottom="10dp">
+
+        <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:hint="@string/input_products_count"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="10dp"
+                  android:orientation="horizontal">
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
+                                                               android:layout_height="wrap_content"
+                                                               android:layout_weight="1"
+                                                               app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                                                               style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                                                               app:boxBackgroundColor="@color/darker_purple"
+                                                               android:layout_marginEnd="5dp">
+
+            <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:background="@color/darker_purple"
+                                               android:hint="@string/input_sum"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
+                                                               android:layout_height="wrap_content"
+                                                               android:layout_weight="1"
+                                                               app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                                                               style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                                                               app:boxBackgroundColor="@color/darker_purple"
+                                                               android:layout_marginStart="5dp">
+
+            <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:background="@color/darker_purple"
+                                               android:hint="@string/input_paid"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
+                                                               android:layout_height="wrap_content"
+                                                               android:layout_weight="1"
+                                                               app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                                                               style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                                                               app:boxBackgroundColor="@color/darker_purple"
+                                                               android:id="@+id/date_layout"
+                                                               android:onClick="openDateDialog"
+                                                               android:clickable="true"
+                                                               android:layout_marginEnd="5dp">
+
+            <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:background="@color/darker_purple"
+                                               android:clickable="true"
+                                               android:focusable="false"
+                                               android:onClick="openDateDialog"
+                                               android:id="@+id/date_input"
+                                               android:hint="@string/input_date"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
+                                                               android:layout_height="wrap_content"
+                                                               android:layout_weight="1"
+                                                               app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                                                               style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                                                               app:boxBackgroundColor="@color/darker_purple"
+                                                               android:layout_marginStart="5dp">
+
+            <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:background="@color/darker_purple"
+                                               android:hint="@string/input_status"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+</LinearLayout>

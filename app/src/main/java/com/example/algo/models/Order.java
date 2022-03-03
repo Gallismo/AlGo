@@ -1,11 +1,16 @@
 package com.example.algo.models;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity
+import static androidx.room.ForeignKey.CASCADE;
+import static androidx.room.ForeignKey.SET_NULL;
+
+@Entity(foreignKeys = @ForeignKey(entity = Status.class, parentColumns = "id", childColumns = "status_id",
+        onDelete = SET_NULL, onUpdate = CASCADE))
 public class Order {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public long id;
 
     public String client_name;
@@ -20,7 +25,7 @@ public class Order {
 
     public long date;
 
-    public long status_id;
+    public long status_id = 1;
 
     public String notes;
 }
