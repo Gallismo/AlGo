@@ -1,6 +1,8 @@
 package com.example.algo;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.NonNull;
@@ -8,12 +10,23 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.algo.custom.CustomActivity;
+import com.example.algo.models.Status;
+import com.example.algo.models.StatusDao;
 import com.example.algo.ui.OrdersFragment;
 import com.example.algo.ui.StatsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE;
+import static com.example.algo.App.onCreateCallback;
 
 public class MainActivity extends CustomActivity {
 

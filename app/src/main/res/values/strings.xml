@@ -12,4 +12,6 @@
     <string name="input_date">Дата</string>
     <string name="input_status">Статус</string>
     <string name="input_notes">Заметки</string>
+    <string name="save_button">Сохранить</string>
+    <string name="error">Требуется заполнение!</string>
 </resources>

@@ -5,8 +5,10 @@ import androidx.room.RoomDatabase;
 import com.example.algo.models.Order;
 import com.example.algo.models.OrderDao;
 import com.example.algo.models.Status;
+import com.example.algo.models.StatusDao;
 
 @Database(entities = {Order.class, Status.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract OrderDao orderDao();
+    public abstract StatusDao statusDao();
 }

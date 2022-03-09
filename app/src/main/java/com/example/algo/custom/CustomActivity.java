@@ -12,8 +12,18 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+import com.example.algo.AppDatabase;
+
+import static com.example.algo.App.onCreateCallback;
 
 public class CustomActivity extends AppCompatActivity {
+
+    public static final String TAG = "AlGo";
+    public AppDatabase db;
+    public static final int MIN_TEXT_LENGTH = 1;
+    public static final String EMPTY_STRING = "";
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
 
@@ -63,5 +73,9 @@ public class CustomActivity extends AppCompatActivity {
 
         assert actionBar != null;
         actionBar.setBackgroundDrawable(colorDrawable);
+
+        db = Room.databaseBuilder(this, AppDatabase.class, "database")
+                .allowMainThreadQueries().addCallback(onCreateCallback)
+                .build();
     }
 }
