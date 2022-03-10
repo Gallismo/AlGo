@@ -6,15 +6,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import com.example.algo.custom.CustomActivity;
+import com.example.algo.custom.FillingTextWatcher;
 import com.example.algo.custom.MoneyTextWatcher;
 import com.example.algo.custom.TextInput;
 import com.example.algo.models.Order;
@@ -32,6 +30,8 @@ public class OrderAddActivity extends CustomActivity {
     Calendar date = Calendar.getInstance();
     TextInput dateInput;
     ActionBar actionBar;
+    public static final int MIN_TEXT_LENGTH = 1;
+    public static final String EMPTY_STRING = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +47,28 @@ public class OrderAddActivity extends CustomActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setTitle("Добавить");
 
-        EditText paid = (EditText) findViewById(R.id.paid_input);
-        EditText sum = (EditText) findViewById(R.id.sum_input);
+        TextInput paid = (TextInput) findViewById(R.id.paid_input);
+        TextInput sum = (TextInput) findViewById(R.id.sum_input);
+        TextInput clientName = (TextInput) findViewById(R.id.client_name_input);
+        TextInput city = (TextInput) findViewById(R.id.city_input);
+        TextInput count = (TextInput) findViewById(R.id.count_input);
+
+        TextInputLayout paidLayout = (TextInputLayout) findViewById(R.id.paid_layout);
+        TextInputLayout sumLayout = (TextInputLayout) findViewById(R.id.sum_layout);
+        TextInputLayout clientNameLayout = (TextInputLayout) findViewById(R.id.client_name_layout);
+        TextInputLayout cityLayout = (TextInputLayout) findViewById(R.id.city_layout);
+        TextInputLayout countLayout = (TextInputLayout) findViewById(R.id.count_layout);
+        TextInputLayout dateLayout = (TextInputLayout) findViewById(R.id.date_layout);
+
         paid.addTextChangedListener(new MoneyTextWatcher(paid));
         sum.addTextChangedListener(new MoneyTextWatcher(sum));
+        paid.addTextChangedListener(new FillingTextWatcher(paid, paidLayout, getApplication()));
+        sum.addTextChangedListener(new FillingTextWatcher(sum, sumLayout, getApplication()));
+        clientName.addTextChangedListener(new FillingTextWatcher(clientName, clientNameLayout, getApplication()));
+        city.addTextChangedListener(new FillingTextWatcher(city, cityLayout, getApplication()));
+        count.addTextChangedListener(new FillingTextWatcher(count, countLayout, getApplication()));
+        dateInput.addTextChangedListener(new FillingTextWatcher(dateInput, dateLayout, getApplication()));
+
     }
 
     @Override
@@ -67,7 +85,9 @@ public class OrderAddActivity extends CustomActivity {
                 finish();
             case R.id.save_button:
                 try {
-                    orderAdd();
+                    if (orderAdd() > 0) {
+                        finish();
+                    }
                 } catch (ParseException e) {
                     Log.e(TAG, e.toString());
                 }
@@ -137,12 +157,11 @@ public class OrderAddActivity extends CustomActivity {
     }
 
     private long orderAdd() throws ParseException {
-        OrderDao orderDao = db.orderDao();
-        Order order = new Order();
-
         if (is_error()) {
             return -1;
         }
+
+        Order order = new Order();
 
         order.client_name = ( (TextInput) findViewById(R.id.client_name_input) ).getText().toString();
         order.city = ( (TextInput) findViewById(R.id.city_input) ).getText().toString();
@@ -155,7 +174,7 @@ public class OrderAddActivity extends CustomActivity {
 
         order.notes = ( (TextInput) findViewById(R.id.notes_input) ).getText().toString();
 
-        return orderDao.insertOrder(order);
+        return orderViewModel.insertOneOrder(order);
 
     }
 

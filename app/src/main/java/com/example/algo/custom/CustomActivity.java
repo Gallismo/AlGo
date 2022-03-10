@@ -1,5 +1,6 @@
 package com.example.algo.custom;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -9,20 +10,24 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.algo.AppDatabase;
+import com.example.algo.models.OrderViewModel;
 
+import static android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE;
 import static com.example.algo.App.onCreateCallback;
 
 public class CustomActivity extends AppCompatActivity {
 
     public static final String TAG = "AlGo";
-    public AppDatabase db;
-    public static final int MIN_TEXT_LENGTH = 1;
-    public static final String EMPTY_STRING = "";
+    public OrderViewModel orderViewModel;
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
@@ -74,8 +79,8 @@ public class CustomActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setBackgroundDrawable(colorDrawable);
 
-        db = Room.databaseBuilder(this, AppDatabase.class, "database")
-                .allowMainThreadQueries().addCallback(onCreateCallback)
-                .build();
+        orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
     }
+
+
 }

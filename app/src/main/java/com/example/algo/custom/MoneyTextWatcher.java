@@ -15,9 +15,9 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class MoneyTextWatcher implements TextWatcher {
-    private final WeakReference<EditText> editTextWeakReference;
+    private final WeakReference<TextInput> editTextWeakReference;
 
-    public MoneyTextWatcher(EditText editText) {
+    public MoneyTextWatcher(TextInput editText) {
         editTextWeakReference = new WeakReference<>(editText);
 //        numberFormat.setMaximumFractionDigits(0);
 //        numberFormat.setRoundingMode(RoundingMode.FLOOR);
@@ -46,10 +46,10 @@ public class MoneyTextWatcher implements TextWatcher {
         editText.removeTextChangedListener(this);
 
         DecimalFormat formatter = new DecimalFormat("###,###.##");
+        formatter.setRoundingMode(RoundingMode.DOWN);
+
         String value = text.replaceAll(" ", "");
         double doubleValue = Double.parseDouble(value);
-        value = String.format("%.2f", doubleValue);
-        doubleValue = Double.parseDouble(value);
         String formatted = formatter.format(doubleValue);
         formatted = formatted.replaceAll(",", " ");
 
