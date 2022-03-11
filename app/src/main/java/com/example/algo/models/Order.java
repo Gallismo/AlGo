@@ -27,5 +27,5 @@ public class Order {
 
     public long status_id = 1;
 
-    public String notes;
+    public String notes = "";
 }

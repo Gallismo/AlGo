@@ -14,4 +14,12 @@
     <string name="input_notes">Заметки</string>
     <string name="save_button">Сохранить</string>
     <string name="error">Требуется заполнение!</string>
+    <string name="client_output">Заказчик:</string>
+    <string name="city_output">Город:</string>
+    <string name="count_output">Кол-во:</string>
+    <string name="sum_output">Сумма:</string>
+    <string name="paid_output">Оплачено:</string>
+    <string name="date_output">Дата:</string>
+    <string name="status_output">Статус:</string>
+    <string name="notes_output">Заметки:</string>
 </resources>

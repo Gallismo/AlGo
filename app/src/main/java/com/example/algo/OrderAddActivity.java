@@ -83,6 +83,7 @@ public class OrderAddActivity extends CustomActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                break;
             case R.id.save_button:
                 try {
                     if (orderAdd() > 0) {
