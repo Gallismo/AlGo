@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="10dp"
+              android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="10dp"
+                  android:orientation="horizontal">
+
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:orientation="vertical">
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/notes_output"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/notes_output"/>
+
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:orientation="vertical">
+                    <Button android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/red"
+                            android:textSize="15sp"
+                            android:layout_gravity="end"
+                            android:id="@+id/switch_status_received"
+                            android:text="@string/button_received"/>
+
+                    <Button android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/yellow"
+                            android:textSize="15sp"
+                            android:layout_marginVertical="5dp"
+                            android:layout_gravity="end"
+                            android:id="@+id/switch_status_sent"
+                            android:text="@string/button_sent"/>
+
+                    <Button android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/green"
+                            android:textSize="15sp"
+                            android:layout_gravity="end"
+                            android:id="@+id/switch_status_delivered"
+                            android:text="@string/button_delivered"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/paid_edit_header"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:orientation="horizontal">
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                app:boxBackgroundColor="@color/darker_purple"
+                app:boxCornerRadiusTopStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
+
+            <com.example.algo.custom.TextInput
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/dark_purple"
+                android:textSize="15sp"
+                android:text="@string/save_button"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_marginTop="30dp"
+                  android:layout_height="wrap_content"
+                  android:paddingHorizontal="20dp"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal">
+
+        <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/edit_button"
+                android:backgroundTint="@color/yellow"/>
+        <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:text="@string/delete_button"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,43 +3,48 @@ package com.example.algo.ui;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import com.example.algo.models.Order;
+
+import java.util.ArrayList;
 
 public class OrdersListAdapter extends BaseExpandableListAdapter {
+    private ArrayList<Order> orders;
+
 
 
     @Override
     public int getGroupCount() {
-        return 0;
+        return orders.size();
     }
 
     @Override
-    public int getChildrenCount(int i) {
-        return 0;
+    public int getChildrenCount(int orderPosition) {
+        return 1;
     }
 
     @Override
-    public Object getGroup(int i) {
-        return null;
+    public Object getGroup(int orderPosition) {
+        return orders.get(orderPosition);
     }
 
     @Override
-    public Object getChild(int i, int i1) {
-        return null;
+    public Object getChild(int orderPosition, int childPosition) {
+        return orders.get(orderPosition).id;
     }
 
     @Override
-    public long getGroupId(int i) {
-        return 0;
+    public long getGroupId(int orderPosition) {
+        return orderPosition;
     }
 
     @Override
-    public long getChildId(int i, int i1) {
-        return 0;
+    public long getChildId(int orderPosition, int childPosition) {
+        return childPosition;
     }
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 
     @Override
@@ -54,6 +59,6 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int i, int i1) {
-        return false;
+        return true;
     }
 }

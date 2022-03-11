@@ -6,11 +6,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.algo.AppDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderViewModel extends AndroidViewModel {
     private DbRepo dbRepo;
-    public LiveData<List<Order>> ordersLiveData;
+    private LiveData<ArrayList<Order>> ordersLiveData;
 
     public OrderViewModel(Application context) {
         super(context);
@@ -20,6 +21,14 @@ public class OrderViewModel extends AndroidViewModel {
 
     public long insertOneOrder(Order order) {
         return dbRepo.insertOneOrder(order);
+    }
+
+    public LiveData<ArrayList<Order>> getLiveDataOrders() {
+        return ordersLiveData;
+    }
+
+    public ArrayList<Order> getOrders() {
+        return ordersLiveData.getValue();
     }
 
 }

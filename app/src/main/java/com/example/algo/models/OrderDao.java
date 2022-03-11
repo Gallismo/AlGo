@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public interface OrderDao {
 
     @Query("SELECT * FROM `order`")
-    LiveData<List<Order>> getAllOrders();
+    LiveData<ArrayList<Order>> getAllOrders();
 
 //    @Query("SELECT * FROM `order` WHERE date > :date_after")
 //    List<Order> getOrdersAfterDate(Date date_after);

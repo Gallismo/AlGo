@@ -4,12 +4,13 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 import com.example.algo.AppDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DbRepo {
     private AppDatabase db;
     private OrderDao orderDao;
-    private LiveData<List<Order>> orders;
+    private LiveData<ArrayList<Order>> orders;
 
     public DbRepo(Application context) {
         db = AppDatabase.getDatabase(context);
@@ -17,7 +18,7 @@ public class DbRepo {
         orders = orderDao.getAllOrders();
     }
 
-    public LiveData<List<Order>> getAllOrders() {
+    public LiveData<ArrayList<Order>> getAllOrders() {
         return orders;
     }
 
