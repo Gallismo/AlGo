@@ -8,12 +8,13 @@ import androidx.room.Query;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Dao
 public interface OrderDao {
 
-    @Query("SELECT * FROM `order`")
-    LiveData<ArrayList<Order>> getAllOrders();
+    @Query("SELECT * FROM `order` JOIN status ON `order`.status_id = status.id")
+    LiveData<Map<Order, Status>> getAllOrders();
 
 //    @Query("SELECT * FROM `order` WHERE date > :date_after")
 //    List<Order> getOrdersAfterDate(Date date_after);

@@ -8,10 +8,11 @@ import com.example.algo.AppDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class OrderViewModel extends AndroidViewModel {
     private DbRepo dbRepo;
-    private LiveData<ArrayList<Order>> ordersLiveData;
+    private LiveData<Map<Order, Status>> ordersLiveData;
 
     public OrderViewModel(Application context) {
         super(context);
@@ -23,12 +24,25 @@ public class OrderViewModel extends AndroidViewModel {
         return dbRepo.insertOneOrder(order);
     }
 
-    public LiveData<ArrayList<Order>> getLiveDataOrders() {
+    public LiveData<Map<Order, Status>> getLiveDataOrders() {
         return ordersLiveData;
     }
 
-    public ArrayList<Order> getOrders() {
-        return ordersLiveData.getValue();
+    public ArrayList<OrderStatus> getOrders() {
+        ArrayList<OrderStatus> result = new ArrayList<OrderStatus>();
+
+        if (ordersLiveData.getValue() == null) {
+            return result;
+        }
+
+        for(Map.Entry<Order, Status> entry: ordersLiveData.getValue().entrySet()) {
+            Order order = entry.getKey();
+            Status status = entry.getValue();
+            OrderStatus orderStatus = new OrderStatus(order, status);
+            result.add(orderStatus);
+        }
+
+        return result;
     }
 
 }

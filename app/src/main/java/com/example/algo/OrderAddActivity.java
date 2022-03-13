@@ -174,6 +174,7 @@ public class OrderAddActivity extends CustomActivity {
         order.date = ( parser.parse( ( (TextInput) findViewById(R.id.date_input) ).getText().toString() ) ).getTime();
 
         order.notes = ( (TextInput) findViewById(R.id.notes_input) ).getText().toString();
+        order.status_id = 1;
 
         return orderViewModel.insertOneOrder(order);
 
