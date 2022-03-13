@@ -17,8 +17,8 @@
     <string name="client_output">Заказчик</string>
     <string name="city_output">Город: </string>
     <string name="count_output"> шт.</string>
-    <string name="sum_output">сумма</string>
-    <string name="paid_output">оплачено</string>
+    <string name="sum_output">Сумма</string>
+    <string name="paid_output">Оплачено</string>
     <string name="date_output">Дата:</string>
     <string name="status_output">Статус</string>
     <string name="notes_output">Заметки</string>

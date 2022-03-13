@@ -7,10 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
-import android.widget.ListView;
-import android.widget.ScrollView;
+import android.widget.*;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -40,9 +37,8 @@ public class OrdersFragment extends Fragment {
         OrderViewModel orderViewModel = viewModelProvider.get(OrderViewModel.class);
 
         ArrayList<OrderStatus> orders = orderViewModel.getOrders();
-        Log.i("Lox", orders.toString());
 
-        OrdersListAdapter ordersListAdapter = new OrdersListAdapter(getContext(), orders);
+        OrdersListAdapter ordersListAdapter = new OrdersListAdapter(getContext(), orders, orderViewModel, getActivity());
 
         orderViewModel.getLiveDataOrders().observe(this, new Observer<Map<Order, Status>>() {
             @Override

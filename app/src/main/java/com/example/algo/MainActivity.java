@@ -2,9 +2,12 @@ package com.example.algo;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Point;
 import android.util.Log;
+import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;

@@ -1,10 +1,12 @@
 package com.example.algo.models;
 
 import android.app.Application;
+import android.util.Log;
 import androidx.lifecycle.LiveData;
 import com.example.algo.AppDatabase;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +27,14 @@ public class DbRepo {
 
     public long insertOneOrder(Order order) {
         return orderDao.insertOrder(order);
+    }
+
+    public int updatePaid(double paid, long order_id) {
+        return orderDao.updatePaid(paid, order_id);
+    }
+
+    public int switchStatusOrder(long status_id, long order_id) {
+        return orderDao.switchStatus(status_id, order_id);
     }
 
 }

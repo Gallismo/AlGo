@@ -10,52 +10,23 @@
         <LinearLayout android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
-                      android:layout_weight="1">
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="vertical">
+                      android:layout_weight="7">
 
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="@string/client_output"/>
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:id="@+id/client_output"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/client_output"/>
 
-            </LinearLayout>
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="@string/city_output"/>
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:id="@+id/city_output"/>
-
-            </LinearLayout>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/city_output"/>
         </LinearLayout>
         <LinearLayout android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
-                      android:layout_weight="1">
+                      android:layout_weight="10">
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="wrap_content"
                               android:orientation="vertical">
-
-
-                    <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:orientation="horizontal">
-                        <TextView android:layout_width="0dp"
-                                  android:layout_height="wrap_content"
-                                  android:layout_weight="1"
-                                  android:text="@string/status_output"/>
-                        <TextView android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:text="@string/count_output_top"/>
-                    </LinearLayout>
 
                     <LinearLayout android:layout_width="match_parent"
                                   android:layout_height="wrap_content"
@@ -78,36 +49,26 @@
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="wrap_content"
                               android:orientation="horizontal">
-                    <LinearLayout android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:gravity="start"
-                                  android:orientation="vertical">
-
-                        <TextView android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:id="@+id/sum_output"/>
-                        <TextView android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:text="@string/sum_output"/>
-                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="@string/sum_output"/>
                     <TextView android:layout_width="0dp"
                               android:layout_weight="1"
-                              android:layout_gravity="center_horizontal"
-                              android:gravity="center"
+                              android:gravity="end"
                               android:layout_height="wrap_content"
-                              android:text="/"/>
-                    <LinearLayout android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
-                                  android:gravity="end"
-                                  android:orientation="vertical">
-                        <TextView android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:id="@+id/paid_output"/>
-                        <TextView android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:text="@string/paid_output"/>
-                    </LinearLayout>
-
+                              android:id="@+id/sum_output"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="@string/paid_output"/>
+                    <TextView android:layout_width="0dp"
+                              android:layout_weight="1"
+                              android:gravity="end"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/paid_output"/>
                 </LinearLayout>
         </LinearLayout>
     </LinearLayout>

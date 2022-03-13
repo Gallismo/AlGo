@@ -42,6 +42,9 @@ public class MoneyTextWatcher implements TextWatcher {
         if ( text.substring(text.length() - 1).equals(".") ) {
             return;
         }
+        if ( text.length() > 2 && text.substring(text.length() - 2).equals(".0")) {
+            return;
+        }
 
         editText.removeTextChangedListener(this);
 

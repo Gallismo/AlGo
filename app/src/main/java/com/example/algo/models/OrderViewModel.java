@@ -1,6 +1,7 @@
 package com.example.algo.models;
 
 import android.app.Application;
+import android.util.Log;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -22,6 +23,14 @@ public class OrderViewModel extends AndroidViewModel {
 
     public long insertOneOrder(Order order) {
         return dbRepo.insertOneOrder(order);
+    }
+
+    public int switchStatus(long status_id, long order_id) {
+        return dbRepo.switchStatusOrder(status_id, order_id);
+    }
+
+    public int updatePaid(double paid, long order_id) {
+        return dbRepo.updatePaid(paid, order_id);
     }
 
     public LiveData<Map<Order, Status>> getLiveDataOrders() {
