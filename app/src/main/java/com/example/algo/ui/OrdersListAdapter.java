@@ -102,6 +102,17 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         if (orders.isEmpty()) {
             return convertView;
         }
+        switch ((int) orders.get(orderPosition).status_id) {
+            case 1:
+                convertView.setBackgroundResource(R.color.red);
+                break;
+            case 2:
+                convertView.setBackgroundResource(R.color.yellow);
+                break;
+            case 3:
+                convertView.setBackgroundResource(R.color.green);
+                break;
+        }
 
         TextView client = (TextView) convertView.findViewById(R.id.client_output);
         TextView city = (TextView) convertView.findViewById(R.id.city_output);
