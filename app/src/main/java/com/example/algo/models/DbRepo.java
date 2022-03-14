@@ -33,6 +33,10 @@ public class DbRepo {
         return orderDao.updatePaid(paid, order_id);
     }
 
+    public int deleteOrder(long order_id) {
+        return orderDao.deleteOrder(order_id);
+    }
+
     public int switchStatusOrder(long status_id, long order_id) {
         return orderDao.switchStatus(status_id, order_id);
     }

@@ -1,6 +1,7 @@
 package com.example.algo;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.*;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import com.example.algo.custom.CustomActivity;
@@ -22,6 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -32,6 +35,8 @@ public class OrderAddActivity extends CustomActivity {
     ActionBar actionBar;
     public static final int MIN_TEXT_LENGTH = 1;
     public static final String EMPTY_STRING = "";
+    TextView id_holder, status_id_holder;
+    TextInput paid, sum, clientName, city, count, notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,27 +52,16 @@ public class OrderAddActivity extends CustomActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setTitle("Добавить");
 
-        TextInput paid = (TextInput) findViewById(R.id.paid_input);
-        TextInput sum = (TextInput) findViewById(R.id.sum_input);
-        TextInput clientName = (TextInput) findViewById(R.id.client_name_input);
-        TextInput city = (TextInput) findViewById(R.id.city_input);
-        TextInput count = (TextInput) findViewById(R.id.count_input);
+        paid = (TextInput) findViewById(R.id.paid_input);
+        sum = (TextInput) findViewById(R.id.sum_input);
+        clientName = (TextInput) findViewById(R.id.client_name_input);
+        city = (TextInput) findViewById(R.id.city_input);
+        count = (TextInput) findViewById(R.id.count_input);
+        notes = (TextInput) findViewById(R.id.notes_input);
+        id_holder = (TextView) findViewById(R.id.id_holder_input);
+        status_id_holder = (TextView) findViewById(R.id.status_id_holder);
 
-        TextInputLayout paidLayout = (TextInputLayout) findViewById(R.id.paid_layout);
-        TextInputLayout sumLayout = (TextInputLayout) findViewById(R.id.sum_layout);
-        TextInputLayout clientNameLayout = (TextInputLayout) findViewById(R.id.client_name_layout);
-        TextInputLayout cityLayout = (TextInputLayout) findViewById(R.id.city_layout);
-        TextInputLayout countLayout = (TextInputLayout) findViewById(R.id.count_layout);
-        TextInputLayout dateLayout = (TextInputLayout) findViewById(R.id.date_layout);
-
-        paid.addTextChangedListener(new MoneyTextWatcher(paid));
-        sum.addTextChangedListener(new MoneyTextWatcher(sum));
-        paid.addTextChangedListener(new FillingTextWatcher(paid, paidLayout, getApplication()));
-        sum.addTextChangedListener(new FillingTextWatcher(sum, sumLayout, getApplication()));
-        clientName.addTextChangedListener(new FillingTextWatcher(clientName, clientNameLayout, getApplication()));
-        city.addTextChangedListener(new FillingTextWatcher(city, cityLayout, getApplication()));
-        count.addTextChangedListener(new FillingTextWatcher(count, countLayout, getApplication()));
-        dateInput.addTextChangedListener(new FillingTextWatcher(dateInput, dateLayout, getApplication()));
+        addListenersAndFillInputs();
 
     }
 
@@ -162,19 +156,26 @@ public class OrderAddActivity extends CustomActivity {
             return -1;
         }
 
+        SimpleDateFormat parser = new SimpleDateFormat("dd.MM.yyyy");
         Order order = new Order();
 
-        order.client_name = ( (TextInput) findViewById(R.id.client_name_input) ).getText().toString();
-        order.city = ( (TextInput) findViewById(R.id.city_input) ).getText().toString();
-        order.products_count = Integer.parseInt( ( (TextInput) findViewById(R.id.count_input) ).getText().toString() );
-        order.sum = Double.parseDouble( ( (TextInput) findViewById(R.id.sum_input) ).getText().toString().replaceAll(" ", "") );
-        order.paid = Double.parseDouble( ( (TextInput) findViewById(R.id.paid_input) ).getText().toString().replaceAll(" ", "") );
+        order.client_name = clientName.getText().toString();
+        order.city = city.getText().toString();
+        order.products_count = Integer.parseInt(count.getText().toString());
+        order.sum = Double.parseDouble(sum.getText().toString());
+        order.paid = Double.parseDouble(paid.getText().toString());
+        order.notes = notes.getText().toString();
+        order.date = parser.parse(dateInput.getText().toString()).getTime();
 
-        SimpleDateFormat parser = new SimpleDateFormat("dd.MM.yyyy");
-        order.date = ( parser.parse( ( (TextInput) findViewById(R.id.date_input) ).getText().toString() ) ).getTime();
+        if (id_holder.getText() != null) {
+            order.id = Long.parseLong(id_holder.getText().toString());
+        }
 
-        order.notes = ( (TextInput) findViewById(R.id.notes_input) ).getText().toString();
-        order.status_id = 1;
+        if (status_id_holder.getText() == null) {
+            order.status_id = 1;
+        } else {
+            order.status_id = Long.parseLong(status_id_holder.getText().toString());
+        }
 
         return orderViewModel.insertOneOrder(order);
 
@@ -214,6 +215,52 @@ public class OrderAddActivity extends CustomActivity {
     private void setInitialDateTime() {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
         dateInput.setText(dateFormatter.format(date.getTime()));
+    }
+
+    public void addListenersAndFillInputs() {
+        TextInputLayout paidLayout = (TextInputLayout) findViewById(R.id.paid_layout);
+        TextInputLayout sumLayout = (TextInputLayout) findViewById(R.id.sum_layout);
+        TextInputLayout clientNameLayout = (TextInputLayout) findViewById(R.id.client_name_layout);
+        TextInputLayout cityLayout = (TextInputLayout) findViewById(R.id.city_layout);
+        TextInputLayout countLayout = (TextInputLayout) findViewById(R.id.count_layout);
+        TextInputLayout dateLayout = (TextInputLayout) findViewById(R.id.date_layout);
+
+        Intent intent = getIntent();
+        clientName.setText(intent.getStringExtra("client_name"));
+        city.setText(intent.getStringExtra("city"));
+        if (intent.getIntExtra("count", 0) != 0) {
+            count.setText(Integer.toString(intent.getIntExtra("count", 0)));
+        }
+        if (intent.getDoubleExtra("paid", 0) != Double.parseDouble(Integer.toString(0))) {
+            paid.setText(Double.toString(intent.getDoubleExtra("paid", 0)));
+        }
+        if (intent.getDoubleExtra("sum", 0) != Double.parseDouble(Integer.toString(0))) {
+            sum.setText(Double.toString(intent.getDoubleExtra("sum", 0)));
+        }
+        if (intent.getLongExtra("date", 0) != Long.parseLong(Integer.toString(0))) {
+            dateInput.setText(new SimpleDateFormat("dd.MM.yyyy")
+                    .format(new Date(intent.getLongExtra("date", 0))));
+        } else {
+            dateInput.setText(new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
+        }
+        notes.setText(intent.getStringExtra("notes"));
+        if (intent.getLongExtra("id", 0) != Long.parseLong(Integer.toString(0))) {
+            id_holder.setText(Long.toString(intent.getLongExtra("id", 0)));
+        }
+        if (intent.getLongExtra("status_id", 0) != Long.parseLong(Integer.toString(0))) {
+            status_id_holder.setText(Long.toString(intent.getLongExtra("status_id", 0)));
+        } else {
+            status_id_holder.setText("1");
+        }
+
+        paid.addTextChangedListener(new MoneyTextWatcher(paid));
+        sum.addTextChangedListener(new MoneyTextWatcher(sum));
+        paid.addTextChangedListener(new FillingTextWatcher(paid, paidLayout, getApplication()));
+        sum.addTextChangedListener(new FillingTextWatcher(sum, sumLayout, getApplication()));
+        clientName.addTextChangedListener(new FillingTextWatcher(clientName, clientNameLayout, getApplication()));
+        city.addTextChangedListener(new FillingTextWatcher(city, cityLayout, getApplication()));
+        count.addTextChangedListener(new FillingTextWatcher(count, countLayout, getApplication()));
+        dateInput.addTextChangedListener(new FillingTextWatcher(dateInput, dateLayout, getApplication()));
     }
 
 }

@@ -38,7 +38,8 @@ public class OrdersFragment extends Fragment {
 
         ArrayList<OrderStatus> orders = orderViewModel.getOrders();
 
-        OrdersListAdapter ordersListAdapter = new OrdersListAdapter(getContext(), orders, orderViewModel, getActivity());
+        OrdersListAdapter ordersListAdapter = new OrdersListAdapter(getContext(), orders, orderViewModel,
+                getActivity(), new EditListener(), listView);
 
         orderViewModel.getLiveDataOrders().observe(this, new Observer<Map<Order, Status>>() {
             @Override
@@ -55,10 +56,34 @@ public class OrdersFragment extends Fragment {
         return view;
     }
 
+    public class EditListener {
+
+        public OnClickListener editClickListener(OrderStatus order) {
+            return new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(OrdersFragment.this.getActivity(), OrderAddActivity.class);
+                    intent.putExtra("id", order.id);
+                    intent.putExtra("client_name", order.client_name);
+                    intent.putExtra("city", order.city);
+                    intent.putExtra("count", order.products_count);
+                    intent.putExtra("sum", order.sum);
+                    intent.putExtra("paid", order.paid);
+                    intent.putExtra("date", order.date);
+                    intent.putExtra("notes", order.notes);
+                    intent.putExtra("status_id", order.status_id);
+                    startActivity(intent);
+                }
+            };
+        }
+    }
+
     private View.OnClickListener orderAddClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(OrdersFragment.this.getActivity(), OrderAddActivity.class);
+            Order order = new Order();
+            intent.putExtra("status_id", order.status_id);
             startActivity(intent);
         }
     };

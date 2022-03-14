@@ -7,10 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.example.algo.R;
 import com.example.algo.custom.FillingTextWatcher;
 import com.example.algo.custom.MoneyTextWatcher;
@@ -21,19 +18,28 @@ import com.example.algo.models.OrderViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class OrdersListAdapter extends BaseExpandableListAdapter {
     private ArrayList<OrderStatus> orders;
-    private Context context;
+    private final Context context;
     private final OrderViewModel viewModel;
     private final Activity activity;
+    private final OrdersFragment.EditListener editListener;
+    private final ExpandableListView listView;
+    private int lastExpanded;
 
-    public OrdersListAdapter(Context mContext, ArrayList<OrderStatus> mOrders, OrderViewModel mViewModel, Activity mActivity) {
+    public OrdersListAdapter(Context mContext, ArrayList<OrderStatus> mOrders,
+                             OrderViewModel mViewModel, Activity mActivity,
+                             OrdersFragment.EditListener mEditListener, ExpandableListView mListView) {
         context = mContext;
         orders = mOrders;
         viewModel = mViewModel;
         activity = mActivity;
+        editListener = mEditListener;
+        listView = mListView;
     }
 
     public void setOrders(ArrayList<OrderStatus> mOrders) {
@@ -41,6 +47,15 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         notifyDataSetChanged();
     }
 
+    @Override
+    public void onGroupExpanded(int groupPosition) {
+        if (groupPosition != lastExpanded) {
+            listView.collapseGroup(lastExpanded);
+        }
+
+        super.onGroupExpanded(groupPosition);
+        lastExpanded = groupPosition;
+    }
 
     @Override
     public int getGroupCount() {
@@ -115,6 +130,7 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
 
 
         TextView notes = convertView.findViewById(R.id.notes_output);
+
         notes.setText(orders.get(orderPosition).notes);
 
         TextView id_holder = (TextView) convertView.findViewById(R.id.database_id_holder);
@@ -146,6 +162,17 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
             }
         });
 
+        Button edit = (Button) convertView.findViewById(R.id.edit_button);
+        Button delete = (Button) convertView.findViewById(R.id.delete_button);
+
+        edit.setOnClickListener(editListener.editClickListener(orders.get(orderPosition)));
+        delete.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.deleteOrder(Long.parseLong(id_holder.getText().toString()));
+            }
+        });
+
         return convertView;
     }
 
@@ -168,5 +195,9 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
+    }
+
+    private void closeOrder() {
+        listView.collapseGroup(lastExpanded);
     }
 }

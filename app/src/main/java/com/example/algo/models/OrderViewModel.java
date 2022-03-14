@@ -33,6 +33,10 @@ public class OrderViewModel extends AndroidViewModel {
         return dbRepo.updatePaid(paid, order_id);
     }
 
+    public int deleteOrder(long order_id) {
+        return dbRepo.deleteOrder(order_id);
+    }
+
     public LiveData<Map<Order, Status>> getLiveDataOrders() {
         return ordersLiveData;
     }

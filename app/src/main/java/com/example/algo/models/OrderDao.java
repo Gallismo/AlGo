@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static androidx.room.OnConflictStrategy.REPLACE;
+
 @Dao
 public interface OrderDao {
 
@@ -20,7 +22,7 @@ public interface OrderDao {
 //    @Query("SELECT * FROM `order` WHERE date > :date_after")
 //    List<Order> getOrdersAfterDate(Date date_after);
 
-    @Insert
+    @Insert(onConflict = REPLACE)
     long insertOrder(Order order);
 
     @Query("UPDATE `order` SET status_id = :status_id WHERE id = :order_id")
@@ -28,4 +30,7 @@ public interface OrderDao {
 
     @Query("UPDATE `order` SET paid = :paid WHERE id = :order_id")
     int updatePaid(double paid, long order_id);
+
+    @Query("DELETE from `order` WHERE id = :order_id")
+    int deleteOrder(long order_id);
 }
