@@ -16,7 +16,9 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 @Dao
 public interface OrderDao {
 
-    @Query("SELECT `order`.*, status.name, status.color FROM `order` JOIN status ON `order`.status_id = status.id")
+    public static String getAll = "SELECT `order`.*, status.name, status.color FROM `order` JOIN status ON `order`.status_id = status.id ORDER BY `order`.date DESC";
+
+    @Query(getAll)
     LiveData<Map<Order, Status>> getAllOrders();
 
 //    @Query("SELECT * FROM `order` WHERE date > :date_after")

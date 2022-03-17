@@ -102,15 +102,17 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         if (orders.isEmpty()) {
             return convertView;
         }
+
+        View ringView = (View) convertView.findViewById(R.id.status_output_ring);
         switch ((int) orders.get(orderPosition).status_id) {
             case 1:
-                convertView.setBackgroundResource(R.color.red);
+                ringView.setBackgroundResource(R.drawable.red_ring);
                 break;
             case 2:
-                convertView.setBackgroundResource(R.color.yellow);
+                ringView.setBackgroundResource(R.drawable.yellow_ring);
                 break;
             case 3:
-                convertView.setBackgroundResource(R.color.green);
+                ringView.setBackgroundResource(R.drawable.green_ring);
                 break;
         }
 
@@ -124,7 +126,7 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         client.setText(orders.get(orderPosition).client_name);
         city.setText(orders.get(orderPosition).city);
         status.setText(orders.get(orderPosition).status_name);
-        count.setText(Integer.toString(orders.get(orderPosition).products_count));
+        count.setText(Integer.toString(orders.get(orderPosition).products_count) + " ");
         sum.setText(Double.toString(orders.get(orderPosition).sum));
         paid.setText(Double.toString(orders.get(orderPosition).paid));
 
@@ -141,8 +143,11 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
 
 
         TextView notes = convertView.findViewById(R.id.notes_output);
+        TextView date = convertView.findViewById(R.id.date_output);
 
         notes.setText(orders.get(orderPosition).notes);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        date.setText(formatter.format(orders.get(orderPosition).date));
 
         TextView id_holder = (TextView) convertView.findViewById(R.id.database_id_holder);
         long DB_ID = orders.get(orderPosition).id;

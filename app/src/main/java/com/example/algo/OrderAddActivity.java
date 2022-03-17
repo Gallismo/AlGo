@@ -162,12 +162,12 @@ public class OrderAddActivity extends CustomActivity {
         order.client_name = clientName.getText().toString();
         order.city = city.getText().toString();
         order.products_count = Integer.parseInt(count.getText().toString());
-        order.sum = Double.parseDouble(sum.getText().toString());
-        order.paid = Double.parseDouble(paid.getText().toString());
+        order.sum = Double.parseDouble(sum.getText().toString().replaceAll(" ", ""));
+        order.paid = Double.parseDouble(paid.getText().toString().replaceAll(" ", ""));
         order.notes = notes.getText().toString();
         order.date = parser.parse(dateInput.getText().toString()).getTime();
 
-        if (id_holder.getText() != null) {
+        if (id_holder.getText() != null && id_holder.getText() != "") {
             order.id = Long.parseLong(id_holder.getText().toString());
         }
 

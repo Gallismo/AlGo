@@ -29,4 +29,14 @@
     <string name="paid_edit_header">Оплатили</string>
     <string name="edit_button">Изменить</string>
     <string name="delete_button">Удалить</string>
+    <string name="filter_button">Фильтры</string>
+    <string name="apply_button">Применить</string>
+    <string-array name="status_spinner">
+        <item>Все статусы</item>
+        <item>Принято</item>
+        <item>Отправлено</item>
+        <item>Доставлено</item>
+    </string-array>
+    <string name="date_start_filter">Начало</string>
+    <string name="date_end_filter">Конец</string>
 </resources>

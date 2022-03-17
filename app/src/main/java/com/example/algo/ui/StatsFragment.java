@@ -1,5 +1,6 @@
 package com.example.algo.ui;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,13 @@ import androidx.fragment.app.Fragment;
 import com.example.algo.R;
 
 public class StatsFragment extends Fragment {
-    public StatsFragment(){}
+    private final Activity activity;
+    public StatsFragment(Activity mActivity){
+        activity = mActivity;
+    }
 
-    public static StatsFragment newInstance() {
-        return new StatsFragment();
+    public static StatsFragment newInstance(Activity activity) {
+        return new StatsFragment(activity);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

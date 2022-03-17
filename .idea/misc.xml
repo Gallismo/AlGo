@@ -3,17 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/drawable-anydpi/green_ring.xml" value="0.12760416666666666" />
         <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/drawable-anydpi/ic_stats.xml" value="0.275" />
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/drawable-anydpi/krug.xml" value="0.1265625" />
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/drawable-anydpi/red_ring.xml" value="0.12760416666666666" />
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/drawable-anydpi/yellow_ring.xml" value="0.12760416666666666" />
         <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.275" />
         <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/layout/fragment_orders.xml" value="0.25" />
         <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/layout/fragment_stats.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/layout/order_add.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/layout/order_add_layout.xml" value="0.2578125" />
-        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/layout/order_item.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/layout/order_item.xml" value="0.2" />
         <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/layout/order_item_expand.xml" value="0.25" />
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/layout/orders_filter.xml" value="0.2" />
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/layout/spinner_item.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/menu/bottom_nav.xml" value="0.2734375" />
-        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/menu/order_add_action_bar.xml" value="0.125" />
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/menu/filter_action_bar.xml" value="0.2734375" />
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/menu/order_add_action_bar.xml" value="0.1" />
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/menu/orders_action_bar.xml" value="0.2734375" />
+        <entry key="..\:/Users/Noob/IntelliJIDEAProjects/AlGo2/app/src/main/res/menu/stats_action_bar.xml" value="0.2734375" />
       </map>
     </option>
   </component>

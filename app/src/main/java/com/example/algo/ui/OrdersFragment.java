@@ -1,13 +1,14 @@
 package com.example.algo.ui;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.*;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,10 +25,14 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class OrdersFragment extends Fragment {
-    public OrdersFragment(){}
+    private final Activity activity;
 
-    public static OrdersFragment newInstance() {
-        return new OrdersFragment();
+    public OrdersFragment(Activity mActivity){
+        activity = mActivity;
+    }
+
+    public static OrdersFragment newInstance(Activity activity) {
+        return new OrdersFragment(activity);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +57,8 @@ public class OrdersFragment extends Fragment {
 
         FloatingActionButton orderAddButton = (FloatingActionButton) view.findViewById(R.id.add_button);
         orderAddButton.setOnClickListener(orderAddClickListener);
+
+
 
         return view;
     }

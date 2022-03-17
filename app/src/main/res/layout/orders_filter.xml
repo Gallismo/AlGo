@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="20dp"
+              android:background="@color/dark_purple"
+              android:orientation="vertical">
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:padding="10dp"
+                  android:background="@color/darker_purple"
+                  android:orientation="horizontal">
+        <Spinner android:layout_width="wrap_content"
+                 android:backgroundTint="@color/white"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/status_filter"/>
+    </LinearLayout>
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="30dp"
+                  android:padding="5dp"
+                  android:orientation="horizontal">
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
+                                                               android:layout_height="wrap_content"
+                                                               android:id="@+id/date_start_layout"
+                                                               android:layout_weight="1"
+                                                               app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                                                               style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                                                               app:boxBackgroundColor="@color/darker_purple"
+                                                               android:layout_marginEnd="25dp"
+                                                               android:onClick="openDateDialog"
+                                                               android:clickable="true">
+            <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:id="@+id/date_start_input"
+                                               android:clickable="true"
+                                               android:hint="@string/date_start_filter"
+                                               android:onClick="openDateDialog"
+                                               android:focusable="false">
+
+            </com.example.algo.custom.TextInput>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
+                                                               android:layout_height="wrap_content"
+                                                               android:id="@+id/date_end_layout"
+                                                               android:layout_weight="1"
+                                                               app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                                                               style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                                                               app:boxBackgroundColor="@color/darker_purple"
+                                                               android:layout_marginStart="25dp"
+                                                               android:onClick="openDateDialog"
+                                                               android:clickable="true">
+            <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:id="@+id/date_end_input"
+                                               android:clickable="true"
+                                               android:hint="@string/date_end_filter"
+                                               android:onClick="openDateDialog"
+                                               android:focusable="false">
+
+            </com.example.algo.custom.TextInput>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+</LinearLayout>
