@@ -11,6 +11,7 @@ import android.view.*;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import com.example.algo.custom.CustomActivity;
@@ -81,6 +82,7 @@ public class OrderAddActivity extends CustomActivity {
             case R.id.save_button:
                 try {
                     if (orderAdd() > 0) {
+                        Toast.makeText(getApplicationContext(), "Cохранено", Toast.LENGTH_SHORT).show();
                         Intent intent = getIntent();
                         if (intent.getStringExtra("ordersFilterSQL") != null && !(intent.getStringExtra("ordersFilterSQL")).equals("")) {
                             Intent closeIntent = new Intent(this, MainActivity.class);

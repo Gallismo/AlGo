@@ -9,7 +9,7 @@
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="horizontal"
-                      android:padding="10dp">
+                      android:padding="10dp" android:layout_marginBottom="10dp">
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:layout_width="wrap_content"
                     android:id="@+id/month_decrease"
@@ -32,31 +32,40 @@
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:orientation="horizontal">
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="5dp">
             <TextView android:layout_width="0dp"
+                      android:textSize="23sp"
                       android:layout_height="wrap_content"
                       android:layout_weight="1" android:text="Сумма дохода"/>
             <TextView android:layout_width="wrap_content"
+                      android:textSize="25sp"
                       android:layout_height="wrap_content"
                       android:id="@+id/money_sum_output"/>
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:orientation="horizontal">
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="5dp">
             <TextView android:layout_width="0dp"
                       android:layout_height="wrap_content"
+                      android:textSize="23sp"
                       android:layout_weight="1" android:text="Сумма печатей"/>
             <TextView android:layout_width="wrap_content"
+                      android:textSize="25sp"
                       android:layout_height="wrap_content"
                       android:id="@+id/products_sum_output"/>
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:orientation="horizontal">
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="5dp">
             <TextView android:layout_width="0dp"
+                      android:textSize="23sp"
                       android:layout_height="wrap_content"
                       android:layout_weight="1" android:text="Количество заказов"/>
             <TextView android:layout_width="wrap_content"
+                      android:textSize="25sp"
                       android:layout_height="wrap_content"
                       android:id="@+id/orders_count_output"/>
         </LinearLayout>
