@@ -1,10 +1,10 @@
 package com.example.algo.models;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Dao;
-import androidx.room.Insert;
-import androidx.room.Query;
-import androidx.room.Update;
+import androidx.lifecycle.MutableLiveData;
+import androidx.room.*;
+import androidx.sqlite.db.SimpleSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteQuery;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,13 +16,9 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 @Dao
 public interface OrderDao {
 
-    public static String getAll = "SELECT `order`.*, status.name, status.color FROM `order` JOIN status ON `order`.status_id = status.id ORDER BY `order`.date DESC";
 
-    @Query(getAll)
-    LiveData<Map<Order, Status>> getAllOrders();
-
-//    @Query("SELECT * FROM `order` WHERE date > :date_after")
-//    List<Order> getOrdersAfterDate(Date date_after);
+    @RawQuery
+    Map<Order, Status> getAllOrders(SupportSQLiteQuery query);
 
     @Insert(onConflict = REPLACE)
     long insertOrder(Order order);
@@ -31,8 +27,20 @@ public interface OrderDao {
     int switchStatus(long status_id, long order_id);
 
     @Query("UPDATE `order` SET paid = :paid WHERE id = :order_id")
-    int updatePaid(double paid, long order_id);
+    int updatePaid(int paid, long order_id);
 
     @Query("DELETE from `order` WHERE id = :order_id")
     int deleteOrder(long order_id);
+
+//    @Query("SELECT SUM(sum) from `order` WHERE date >= :dateStart AND date <= :dateEnd")
+//    float moneySum(long dateStart, long dateEnd);
+//
+//    @Query("SELECT SUM(products_count) from `order` WHERE date >= :dateStart AND date <= :dateEnd")
+//    int productsSum(long dateStart, long dateEnd);
+//
+//    @Query("SELECT COUNT(*) from `order` WHERE date >= :dateStart AND date <= :dateEnd")
+//    int orderCount(long dateStart, long dateEnd);
+    @Query("SELECT SUM(sum) as moneySum, SUM(products_count) as productsSum," +
+            " COUNT(*) as ordersCount FROM `order` WHERE date BETWEEN :dateStart AND :dateEnd")
+    Stats getStats(long dateStart, long dateEnd);
 }

@@ -18,9 +18,11 @@ import com.example.algo.models.OrderViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class OrdersListAdapter extends BaseExpandableListAdapter {
     private ArrayList<OrderStatus> orders;
@@ -127,8 +129,8 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         city.setText(orders.get(orderPosition).city);
         status.setText(orders.get(orderPosition).status_name);
         count.setText(Integer.toString(orders.get(orderPosition).products_count) + " ");
-        sum.setText(Double.toString(orders.get(orderPosition).sum));
-        paid.setText(Double.toString(orders.get(orderPosition).paid));
+        sum.setText(new DecimalFormat("###,###").format(orders.get(orderPosition).sum).replaceAll(",", " "));
+        paid.setText(new DecimalFormat("###,###").format(orders.get(orderPosition).paid).replaceAll(",", " "));
 
         return convertView;
     }
@@ -168,7 +170,7 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         save_paid.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (viewModel.updatePaid(Double.parseDouble( paid_input.getText().toString().replaceAll(" ", "") ),
+                switch (viewModel.updatePaid(Integer.parseInt( paid_input.getText().toString().replaceAll("\\s+", "") ),
                         Integer.parseInt(id_holder.getText().toString()))) {
                     case 1:
                         Toast.makeText(context, "Изменение сохранено", Toast.LENGTH_SHORT).show();

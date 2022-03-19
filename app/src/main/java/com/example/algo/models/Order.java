@@ -8,7 +8,7 @@ import static androidx.room.ForeignKey.CASCADE;
 import static androidx.room.ForeignKey.SET_NULL;
 
 @Entity(foreignKeys = @ForeignKey(entity = Status.class, parentColumns = "id", childColumns = "status_id",
-        onDelete = SET_NULL, onUpdate = CASCADE))
+        onDelete = SET_NULL, onUpdate = CASCADE), tableName = "order")
 public class Order {
     @PrimaryKey(autoGenerate = true)
     public long id;
@@ -19,9 +19,9 @@ public class Order {
 
     public int products_count;
 
-    public double sum;
+    public int sum;
 
-    public double paid;
+    public int paid;
 
     public long date;
 

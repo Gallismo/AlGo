@@ -24,9 +24,9 @@ public class OrderStatus {
 
     public int products_count;
 
-    public double sum;
+    public int sum;
 
-    public double paid;
+    public int paid;
 
     public long date;
 

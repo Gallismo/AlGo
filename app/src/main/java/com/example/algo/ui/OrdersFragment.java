@@ -15,32 +15,34 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.algo.MainActivity;
 import com.example.algo.OrderAddActivity;
 import com.example.algo.R;
-import com.example.algo.models.Order;
-import com.example.algo.models.OrderStatus;
-import com.example.algo.models.OrderViewModel;
-import com.example.algo.models.Status;
+import com.example.algo.custom.CustomActivity;
+import com.example.algo.models.*;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class OrdersFragment extends Fragment {
     private final Activity activity;
+    private final String SQL;
 
-    public OrdersFragment(Activity mActivity){
+
+    public OrdersFragment(Activity mActivity, String SQL){
         activity = mActivity;
+        this.SQL = SQL;
     }
 
-    public static OrdersFragment newInstance(Activity activity) {
-        return new OrdersFragment(activity);
+    public static OrdersFragment newInstance(Activity activity, String SQL) {
+        return new OrdersFragment(activity, SQL);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_orders, container, false);
         ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.orders_list);
-        ViewModelProvider viewModelProvider = new ViewModelProvider(this);
-        OrderViewModel orderViewModel = viewModelProvider.get(OrderViewModel.class);
+        OrderViewModel orderViewModel = CustomActivity.orderViewModel;
 
+        orderViewModel.setOrders(SQL);
         ArrayList<OrderStatus> orders = orderViewModel.getOrders();
 
         OrdersListAdapter ordersListAdapter = new OrdersListAdapter(getContext(), orders, orderViewModel,
@@ -79,6 +81,7 @@ public class OrdersFragment extends Fragment {
                     intent.putExtra("date", order.date);
                     intent.putExtra("notes", order.notes);
                     intent.putExtra("status_id", order.status_id);
+                    intent.putExtra("ordersFilterSQL", SQL);
                     startActivity(intent);
                 }
             };

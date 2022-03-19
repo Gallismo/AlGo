@@ -37,23 +37,16 @@ public class MoneyTextWatcher implements TextWatcher {
         if (editText == null || editText.getText().toString().equals("")) {
             return;
         }
-        String text = editText.getText().toString();
-
-        if ( text.substring(text.length() - 1).equals(".") ) {
-            return;
-        }
-        if ( text.length() > 2 && text.substring(text.length() - 2).equals(".0")) {
-            return;
-        }
+        String text = editText.getText().toString().replaceAll("\\s+", "");
 
         editText.removeTextChangedListener(this);
-
-        DecimalFormat formatter = new DecimalFormat("###,###.##");
+        String value = text.replaceAll("\\s+", "");
+        DecimalFormat formatter = new DecimalFormat("###,###");
         formatter.setRoundingMode(RoundingMode.DOWN);
 
-        String value = text.replaceAll(" ", "");
-        double doubleValue = Double.parseDouble(value);
-        String formatted = formatter.format(doubleValue);
+        value = value.replaceAll("\\s+", "");
+        int intValue = Integer.parseInt(value);
+        String formatted = formatter.format(intValue);
         formatted = formatted.replaceAll(",", " ");
 
 

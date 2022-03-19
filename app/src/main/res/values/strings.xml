@@ -15,7 +15,7 @@
     <string name="save_button">Сохранить</string>
     <string name="error">Требуется заполнение!</string>
     <string name="client_output">Заказчик</string>
-    <string name="city_output">Город: </string>
+    <string name="city_output">Город</string>
     <string name="count_output"> шт.</string>
     <string name="sum_output">Сумма</string>
     <string name="paid_output">Оплачено</string>

@@ -20,19 +20,29 @@
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginTop="30dp"
+                  android:layout_marginTop="15dp"
                   android:padding="5dp"
-                  android:orientation="horizontal">
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                                                               android:layout_height="wrap_content"
-                                                               android:id="@+id/date_start_layout"
-                                                               android:layout_weight="1"
-                                                               app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
-                                                               style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                                                               app:boxBackgroundColor="@color/darker_purple"
-                                                               android:layout_marginEnd="25dp"
-                                                               android:onClick="openDateDialog"
-                                                               android:clickable="true">
+                  android:orientation="vertical">
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+            <CheckBox android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/is_filter_date"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Фильтровать по дате"/>
+        </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/date_start_layout"
+                android:layout_marginBottom="15dp"
+                app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                app:boxBackgroundColor="@color/darker_purple"
+                android:onClick="openDateDialog"
+                android:clickable="true">
             <com.example.algo.custom.TextInput android:layout_width="match_parent"
                                                android:layout_height="wrap_content"
                                                android:id="@+id/date_start_input"
@@ -43,16 +53,15 @@
 
             </com.example.algo.custom.TextInput>
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp"
-                                                               android:layout_height="wrap_content"
-                                                               android:id="@+id/date_end_layout"
-                                                               android:layout_weight="1"
-                                                               app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
-                                                               style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                                                               app:boxBackgroundColor="@color/darker_purple"
-                                                               android:layout_marginStart="25dp"
-                                                               android:onClick="openDateDialog"
-                                                               android:clickable="true">
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/date_end_layout"
+                app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                app:boxBackgroundColor="@color/darker_purple"
+                android:onClick="openDateDialog"
+                android:clickable="true">
             <com.example.algo.custom.TextInput android:layout_width="match_parent"
                                                android:layout_height="wrap_content"
                                                android:id="@+id/date_end_input"
@@ -64,4 +73,32 @@
             </com.example.algo.custom.TextInput>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/client_filter_layout"
+            app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            app:boxBackgroundColor="@color/darker_purple">
+        <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:id="@+id/client_filter_input"
+                                           android:hint="@string/client_output"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:id="@+id/city_filter_layout"
+            app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            app:boxBackgroundColor="@color/darker_purple">
+        <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:id="@+id/city_filter_input"
+                                           android:hint="@string/city_output"/>
+    </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

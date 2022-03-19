@@ -27,7 +27,7 @@ import static com.example.algo.App.onCreateCallback;
 public class CustomActivity extends AppCompatActivity {
 
     public static final String TAG = "AlGo";
-    public OrderViewModel orderViewModel;
+    public static OrderViewModel orderViewModel;
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {

@@ -31,6 +31,8 @@ import static com.example.algo.App.onCreateCallback;
 
 public class MainActivity extends CustomActivity {
 
+    private static final String defaultOrdersSQL = "SELECT `order`.*, `status`.name, `status`.color FROM `order` INNER JOIN `status` ON `order`.status_id = `status`.id ORDER BY `order`.date DESC;";
+
     private OrdersFragment ordersFragment;
     private StatsFragment statsFragment;
     private ActionBar actionBar;
@@ -59,7 +61,14 @@ public class MainActivity extends CustomActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.filter_orders:
+                Intent intentFilter = getIntent();
+                String ordersSQL = defaultOrdersSQL;
+                if (intentFilter.getStringExtra("ordersFilterSQL") != null && !(intentFilter.getStringExtra("ordersFilterSQL")).equals("")) {
+                    ordersSQL = intentFilter.getStringExtra("ordersFilterSQL");
+                }
+
                 Intent intent = new Intent(this, FilterOrdersActivity.class);
+                intent.putExtra("ordersFilterSQL", ordersSQL);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -103,6 +112,12 @@ public class MainActivity extends CustomActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        String ordersSQL = defaultOrdersSQL;
+        if (intent.getStringExtra("ordersFilterSQL") != null && !(intent.getStringExtra("ordersFilterSQL")).equals("")) {
+            ordersSQL = intent.getStringExtra("ordersFilterSQL");
+        }
+
         actionBar = getSupportActionBar();
         currentFragment = 1;
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.nav_bar);
@@ -110,7 +125,7 @@ public class MainActivity extends CustomActivity {
         navigation.setOnItemSelectedListener(navSelectListener);
 
 
-        ordersFragment = OrdersFragment.newInstance(this);
+        ordersFragment = OrdersFragment.newInstance(this, ordersSQL);
         statsFragment = StatsFragment.newInstance(this);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

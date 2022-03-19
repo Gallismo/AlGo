@@ -81,7 +81,14 @@ public class OrderAddActivity extends CustomActivity {
             case R.id.save_button:
                 try {
                     if (orderAdd() > 0) {
-                        finish();
+                        Intent intent = getIntent();
+                        if (intent.getStringExtra("ordersFilterSQL") != null && !(intent.getStringExtra("ordersFilterSQL")).equals("")) {
+                            Intent closeIntent = new Intent(this, MainActivity.class);
+                            closeIntent.putExtra("ordersFilterSQL", intent.getStringExtra("ordersFilterSQL"));
+                            startActivity(closeIntent);
+                        } else {
+                            finish();
+                        }
                     }
                 } catch (ParseException e) {
                     Log.e(TAG, e.toString());
@@ -162,8 +169,8 @@ public class OrderAddActivity extends CustomActivity {
         order.client_name = clientName.getText().toString();
         order.city = city.getText().toString();
         order.products_count = Integer.parseInt(count.getText().toString());
-        order.sum = Double.parseDouble(sum.getText().toString().replaceAll(" ", ""));
-        order.paid = Double.parseDouble(paid.getText().toString().replaceAll(" ", ""));
+        order.sum = Integer.parseInt(sum.getText().toString().replaceAll("\\s+", ""));
+        order.paid = Integer.parseInt(paid.getText().toString().replaceAll("\\s+", ""));
         order.notes = notes.getText().toString();
         order.date = parser.parse(dateInput.getText().toString()).getTime();
 
@@ -231,11 +238,11 @@ public class OrderAddActivity extends CustomActivity {
         if (intent.getIntExtra("count", 0) != 0) {
             count.setText(Integer.toString(intent.getIntExtra("count", 0)));
         }
-        if (intent.getDoubleExtra("paid", 0) != Double.parseDouble(Integer.toString(0))) {
-            paid.setText(Double.toString(intent.getDoubleExtra("paid", 0)));
+        if (intent.getIntExtra("paid", 0) != Integer.parseInt(Integer.toString(0))) {
+            paid.setText(Integer.toString(intent.getIntExtra("paid", 0)));
         }
-        if (intent.getDoubleExtra("sum", 0) != Double.parseDouble(Integer.toString(0))) {
-            sum.setText(Double.toString(intent.getDoubleExtra("sum", 0)));
+        if (intent.getIntExtra("sum", 0) != Integer.parseInt(Integer.toString(0))) {
+            sum.setText(Integer.toString(intent.getIntExtra("sum", 0)));
         }
         if (intent.getLongExtra("date", 0) != Long.parseLong(Integer.toString(0))) {
             dateInput.setText(new SimpleDateFormat("dd.MM.yyyy")

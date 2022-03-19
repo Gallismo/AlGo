@@ -4,7 +4,10 @@ import android.app.Application;
 import android.util.Log;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.sqlite.db.SimpleSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteQuery;
 import com.example.algo.AppDatabase;
 
 import java.util.ArrayList;
@@ -12,13 +15,13 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderViewModel extends AndroidViewModel {
-    private DbRepo dbRepo;
+    private final DbRepo dbRepo;
     private LiveData<Map<Order, Status>> ordersLiveData;
+    private LiveData<Stats> statsLiveData;
 
     public OrderViewModel(Application context) {
         super(context);
-        dbRepo = new DbRepo(context);
-        ordersLiveData = dbRepo.getAllOrders();
+        dbRepo = DbRepo.getInstance(context);
     }
 
     public long insertOneOrder(Order order) {
@@ -29,7 +32,7 @@ public class OrderViewModel extends AndroidViewModel {
         return dbRepo.switchStatusOrder(status_id, order_id);
     }
 
-    public int updatePaid(double paid, long order_id) {
+    public int updatePaid(int paid, long order_id) {
         return dbRepo.updatePaid(paid, order_id);
     }
 
@@ -37,25 +40,61 @@ public class OrderViewModel extends AndroidViewModel {
         return dbRepo.deleteOrder(order_id);
     }
 
+
+    public void setOrders(String SQL) {
+        ordersLiveData = dbRepo.getAllOrders(SQL);
+    }
+
     public LiveData<Map<Order, Status>> getLiveDataOrders() {
         return ordersLiveData;
     }
 
+//    public LiveData<Map<Order, Status>> getLiveDataOrders(String SQL) {
+//        ordersLiveData = dbRepo.getAllOrders(SQL);
+//        return ordersLiveData;
+//    }
+
     public ArrayList<OrderStatus> getOrders() {
-        ArrayList<OrderStatus> result = new ArrayList<OrderStatus>();
+        ArrayList<OrderStatus> result = new ArrayList<>();
 
         if (ordersLiveData.getValue() == null) {
             return result;
         }
 
-        for(Map.Entry<Order, Status> entry: ordersLiveData.getValue().entrySet()) {
-            Order order = entry.getKey();
-            Status status = entry.getValue();
-            OrderStatus orderStatus = new OrderStatus(order, status);
-            result.add(orderStatus);
+        for (Map.Entry<Order, Status> item: ordersLiveData.getValue().entrySet()) {
+            result.add(new OrderStatus(item.getKey(), item.getValue()));
         }
 
         return result;
     }
+
+//    public ArrayList<OrderStatus> getOrders(String SQL) {
+//        ordersLiveData = dbRepo.getAllOrders(SQL);
+//        ArrayList<OrderStatus> result = new ArrayList<>();
+//
+//        if (ordersLiveData.getValue() == null) {
+//            return result;
+//        }
+//
+//        for (Map.Entry<Order, Status> item: ordersLiveData.getValue().entrySet()) {
+//            result.add(new OrderStatus(item.getKey(), item.getValue()));
+//        }
+//
+//        return result;
+//    }
+
+    public void setStats(long dateStart, long dateEnd) {
+        statsLiveData = dbRepo.getStats(dateStart, dateEnd);
+    }
+
+    public LiveData<Stats> getStatsLiveDate() {
+        return statsLiveData;
+    }
+
+    public Stats getStats() {
+        return statsLiveData.getValue();
+    }
+
+
 
 }

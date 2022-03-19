@@ -78,7 +78,7 @@
                                                android:background="@color/darker_purple"
                                                android:id="@+id/sum_input"
                                                android:inputType="number|textVisiblePassword"
-                                               android:digits="0123456789."
+                                               android:digits="0123456789"
                                                android:hint="@string/input_sum"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -96,7 +96,7 @@
                                                android:background="@color/darker_purple"
                                                android:id="@+id/paid_input"
                                                android:inputType="number|textVisiblePassword"
-                                               android:digits="0123456789."
+                                               android:digits="0123456789"
 
                                                android:hint="@string/input_paid"/>
 
