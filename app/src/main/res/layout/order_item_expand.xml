@@ -11,7 +11,6 @@
               android:visibility="invisible"/>
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginBottom="10dp"
                   android:orientation="horizontal">
 
         <LinearLayout android:layout_width="0dp"
@@ -64,45 +63,21 @@
                             android:layout_gravity="end"
                             android:id="@+id/switch_status_delivered"
                             android:text="@string/button_delivered"/>
+                    <Button android:layout_width="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/teal_700"
+                            android:layout_gravity="end"
+                            android:textSize="15sp"
+                            android:id="@+id/expanded_paid_button_save"
+                            android:text="@string/paid_button"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:gravity="center"
-                  android:orientation="horizontal">
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                app:boxBackgroundColor="@color/darker_purple"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/expanded_paid_input_layout"
-                android:layout_weight="1">
-
-            <com.example.algo.custom.TextInput
-                    android:layout_width="match_parent"
-                    android:hint="Оплатили"
-                    android:inputType="number|textVisiblePassword"
-                    android:id="@+id/expanded_paid_input"
-                    android:digits="0123456789"
-                    android:layout_height="wrap_content"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-        <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/darker_purple"
-                android:textSize="15sp"
-                android:id="@+id/expanded_paid_button_save"
-                android:text="@string/save_button"/>
-
-    </LinearLayout>
-
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_marginTop="30dp"
+                  android:layout_marginTop="10dp"
                   android:layout_height="wrap_content"
                   android:paddingHorizontal="20dp"
                   android:gravity="center_vertical"

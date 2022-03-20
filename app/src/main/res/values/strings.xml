@@ -39,4 +39,5 @@
     </string-array>
     <string name="date_start_filter">Начало</string>
     <string name="date_end_filter">Конец</string>
+    <string name="paid_button">Оплатили</string>
 </resources>

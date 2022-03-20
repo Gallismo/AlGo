@@ -3,6 +3,8 @@ package com.example.algo.ui;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -124,6 +126,7 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         TextView count = (TextView) convertView.findViewById(R.id.count_output);
         TextView sum = (TextView) convertView.findViewById(R.id.sum_output);
         TextView paid = (TextView) convertView.findViewById(R.id.paid_output);
+        TextView if_paid = (TextView) convertView.findViewById(R.id.if_paid_output);
 
         client.setText(orders.get(orderPosition).client_name);
         city.setText(orders.get(orderPosition).city);
@@ -131,6 +134,12 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         count.setText(Integer.toString(orders.get(orderPosition).products_count) + " ");
         sum.setText(new DecimalFormat("###,###").format(orders.get(orderPosition).sum).replaceAll(",", " "));
         paid.setText(new DecimalFormat("###,###").format(orders.get(orderPosition).paid).replaceAll(",", " "));
+        if (orders.get(orderPosition).sum == orders.get(orderPosition).paid) {
+            if_paid.setText("Оплачено");
+        } else {
+            if_paid.setHeight(0);
+            if_paid.setWidth(0);
+        }
 
         return convertView;
     }
@@ -163,19 +172,18 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         sent.setOnClickListener(statusUpdateListener(2, Integer.parseInt(id_holder.getText().toString())));
         delivered.setOnClickListener(statusUpdateListener(3, Integer.parseInt(id_holder.getText().toString())));
 
-        TextInput paid_input = (TextInput) convertView.findViewById(R.id.expanded_paid_input);
-        paid_input.addTextChangedListener(new MoneyTextWatcher(paid_input));
-
         Button save_paid = (Button) convertView.findViewById(R.id.expanded_paid_button_save);
         save_paid.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (viewModel.updatePaid(Integer.parseInt( paid_input.getText().toString().replaceAll("\\s+", "") ),
+                switch (viewModel.updatePaid(orders.get(orderPosition).sum,
                         Integer.parseInt(id_holder.getText().toString()))) {
                     case 1:
                         Toast.makeText(context, "Изменение сохранено", Toast.LENGTH_SHORT).show();
+                        break;
                     case 0:
                         Toast.makeText(context, "Что-то пошло не так", Toast.LENGTH_SHORT).show();
+                        break;
                 }
             }
         });
