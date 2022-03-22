@@ -134,11 +134,11 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         count.setText(Integer.toString(orders.get(orderPosition).products_count) + " ");
         sum.setText(new DecimalFormat("###,###").format(orders.get(orderPosition).sum).replaceAll(",", " "));
         paid.setText(new DecimalFormat("###,###").format(orders.get(orderPosition).paid).replaceAll(",", " "));
-        if (orders.get(orderPosition).sum == orders.get(orderPosition).paid) {
+        if (orders.get(orderPosition).sum <= orders.get(orderPosition).paid) {
             if_paid.setText("Оплачено");
         } else {
-            if_paid.setHeight(0);
-            if_paid.setWidth(0);
+            if_paid.setTextColor(context.getColor(R.color.red));
+            if_paid.setText("Не оплачено");
         }
 
         return convertView;

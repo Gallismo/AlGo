@@ -69,5 +69,65 @@
                       android:layout_height="wrap_content"
                       android:id="@+id/orders_count_output"/>
         </LinearLayout>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="15dp"
+                      android:padding="5dp"
+                      android:orientation="vertical">
+<!--            <LinearLayout android:layout_width="wrap_content"-->
+<!--                          android:layout_height="wrap_content"-->
+<!--                          android:orientation="horizontal">-->
+<!--                <CheckBox android:layout_width="wrap_content"-->
+<!--                          android:layout_height="wrap_content"-->
+<!--                          android:id="@+id/is_filter_date"/>-->
+<!--                <TextView android:layout_width="wrap_content"-->
+<!--                          android:layout_height="wrap_content"-->
+<!--                          android:text="Фильтровать по дате"/>-->
+<!--            </LinearLayout>-->
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/stats_end_layout"
+                    android:layout_marginBottom="15dp"
+                    app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    app:boxBackgroundColor="@color/darker_purple"
+                    android:clickable="true">
+                <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:id="@+id/stats_date_start"
+                                                   android:clickable="true"
+                                                   android:hint="@string/date_start_filter"
+                                                   android:focusable="false">
+
+                </com.example.algo.custom.TextInput>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/stats_start_layout"
+                    app:hintTextAppearance="@style/Theme.AlGo.InputHintText"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    app:boxBackgroundColor="@color/darker_purple"
+                    android:clickable="true">
+                <com.example.algo.custom.TextInput android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:id="@+id/stats_date_end"
+                                                   android:clickable="true"
+                                                   android:hint="@string/date_end_filter"
+                                                   android:focusable="false">
+
+                </com.example.algo.custom.TextInput>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/apply_button"
+                    android:id="@+id/stats_apply"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="end"
+                    android:textSize="17sp"
+                    android:backgroundTint="@color/teal_700"/>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
