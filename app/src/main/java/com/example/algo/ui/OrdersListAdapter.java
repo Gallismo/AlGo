@@ -136,6 +136,7 @@ public class OrdersListAdapter extends BaseExpandableListAdapter {
         paid.setText(new DecimalFormat("###,###").format(orders.get(orderPosition).paid).replaceAll(",", " "));
         if (orders.get(orderPosition).sum <= orders.get(orderPosition).paid) {
             if_paid.setText("Оплачено");
+            if_paid.setTextColor(context.getColor(R.color.red));
         } else {
             if_paid.setTextColor(context.getColor(R.color.red));
             if_paid.setText("Не оплачено");
